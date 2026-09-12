@@ -11,16 +11,16 @@
     "slug": "rampage-united",
     "title": "Rampage United",
     "short": "Multiplayer typing-speed fighting game with combat mechanics.",
-    "full": "Designed a multiplayer typing-speed fighting game featuring dynamic combat mechanics, weapon stores, and complex character animation systems, including a hacker-terminal-style intro engine.",
+    "full": "Designed a multiplayer typing-speed fighting game featuring dynamic combat mechanics, weapon stores, and complex character animation systems.",
     "stack": ["React", "Vite", "Web Audio API", "Canvas"],
     "link": "https://github.com/Sandip1230"
   },
   {
-    "slug": "vayunetra",
-    "title": "VayuNetra",
+    "slug": "vayusetu",
+    "title": "VayuSetu",
     "short": "AI-powered satellite-based air quality intelligence platform.",
-    "full": "Engineered an AI-powered satellite-based air quality intelligence platform for the Bharatiya Antariksh Hackathon 2026, fusing Sentinel-5P TROPOMI, MODIS, ERA5, and CPCB data with XGBoost downscaling and DBSCAN clustering, backed by a Flask API.",
-    "stack": ["React", "Flask", "XGBoost", "DBSCAN"],
+    "full": "Engineered an AI-powered satellite-based air quality intelligence platform for the Bharatiya Antariksh Hackathon 2026.",
+    "stack": ["React", "Flask", "Machine Learning"],
     "link": "https://github.com/Sandip1230"
   },
   {
@@ -34,14 +34,14 @@
   {
     "slug": "forma-ai",
     "title": "Forma AI",
-    "short": "AI-powered dynamic form generation app.",
-    "full": "Configured a full-stack internship project within a modular codebase, managing repository settings and client-side package dependencies. React frontend with a Node.js/Express/MongoDB backend.",
+    "short": "Full-stack internship project with a modular codebase.",
+    "full": "Configured a full-stack internship project within a modular codebase, managing repository settings and client-side package dependencies.",
     "stack": ["React", "Node.js", "Express", "MongoDB"],
     "link": "https://github.com/Sandip1230"
   },
   {
     "slug": "smart-car",
-    "title": "Shape-Shifting Smart Car",
+    "title": "Shape-Shifting Smart Car Prototype",
     "short": "Bluetooth-controlled robotic vehicle prototype.",
     "full": "Constructed a Bluetooth-controlled robotic vehicle, including hardware manifests, wiring blueprints, and Arduino control code.",
     "stack": ["Arduino", "L293D", "Bluetooth"],
