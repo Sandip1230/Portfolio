@@ -4,6 +4,8 @@ import ProjectModal from './components/ProjectModal';
 import Skills from './components/Skills';
 import { useReveal } from './hooks/useReveal';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const FALLBACK_PROJECTS = [
   { slug: 'syncspace', title: 'SyncSpace', short: 'Real-time collaborative code editor + whiteboard workspace.', full: 'Developed a real-time collaborative code editor and whiteboard workspace using Socket.io and Yjs for state synchronization, with admin handoff logic and custom room approval interfaces.', stack: ['React', 'Socket.io', 'Yjs', 'Vite'], link: 'https://github.com/Sandip1230' },
   { slug: 'rampage-united', title: 'Rampage United', short: 'Multiplayer typing-speed fighting game with combat mechanics.', full: 'Designed a multiplayer typing-speed fighting game featuring dynamic combat mechanics, weapon stores, and complex character animation systems.', stack: ['React', 'Vite', 'Web Audio API', 'Canvas'], link: 'https://github.com/Sandip1230' },
@@ -48,14 +50,14 @@ export default function App() {
   const contactR = useReveal();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/projects`).then(r => r.json()).then(d => { if (d?.length) setProjects(d); }).catch(() => {});
+    fetch(`${API_URL}/api/projects`).then(r => r.json()).then(d => { if (d?.length) setProjects(d); }).catch(() => {});
   }, []);
 
   async function submitContact(e) {
     e.preventDefault();
     setStatus('sending');
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      const res = await fetch(`${API_URL}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       if (!res.ok) throw new Error();
       setStatus('ok'); setForm({ name: '', email: '', message: '' });
     } catch { setStatus('err'); }
