@@ -48,14 +48,14 @@ export default function App() {
   const contactR = useReveal();
 
   useEffect(() => {
-    fetch('/api/projects').then(r => r.json()).then(d => { if (d?.length) setProjects(d); }).catch(() => {});
+    fetch(`${import.meta.env.VITE_API_URL}/api/projects`).then(r => r.json()).then(d => { if (d?.length) setProjects(d); }).catch(() => {});
   }, []);
 
   async function submitContact(e) {
     e.preventDefault();
     setStatus('sending');
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       if (!res.ok) throw new Error();
       setStatus('ok'); setForm({ name: '', email: '', message: '' });
     } catch { setStatus('err'); }
