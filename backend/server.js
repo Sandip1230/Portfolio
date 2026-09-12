@@ -7,7 +7,10 @@ const contactRoute = require('./routes/contact');
 const projectsRoute = require('./routes/projects');
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://portfolio-six-rose-66.vercel.app'
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
