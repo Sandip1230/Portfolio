@@ -8,8 +8,19 @@ const projectsRoute = require('./routes/projects');
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://portfolio-six-rose-66.vercel.app',
+];
+
 app.use(cors({
-  origin: 'https://portfolio-six-rose-66.vercel.app'
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 app.use(express.json());
 

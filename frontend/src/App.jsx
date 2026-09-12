@@ -89,7 +89,7 @@ export default function App() {
           <p>B.Tech CSE student at JIS College of Engineering — I build collaborative apps, browser games, and satellite-data platforms with the MERN stack.</p>
 
           <div className="social-row">
-            <a className="social-icon" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">Gh</a>
+            <a className="social-icon" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">Git</a>
             <a className="social-icon" href="https://www.linkedin.com/in/sandip-maitra-20016137a/" target="_blank" rel="noreferrer">in</a>
             <a className="social-icon" href="mailto:maitrasandip99@gmail.com">✉</a>
           </div>
@@ -170,21 +170,32 @@ export default function App() {
       <section className={`section ${contactR.revealClass}`} id="contact" ref={contactR.ref}>
         <div className="eyebrow">Contact</div>
         <h2>Let's build something</h2>
-        <div className="contact-wrap">
+
+        <div className="contact-card">
           <div className="contact-info">
-            <p style={{ color: 'var(--dim)' }}>Open to internships, collabs, and interesting problems.</p>
-            <a href="mailto:maitrasandip99@gmail.com">maitrasandip99@gmail.com</a>
-            <a href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">github.com/Sandip1230</a>
-            <a href="https://www.linkedin.com/in/sandip-maitra-20016137a/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <p>Open to internships, collabs, and interesting problems.</p>
+
+            <a className="contact-row" href="mailto:maitrasandip99@gmail.com">
+              <span className="contact-icon">✉</span> maitrasandip99@gmail.com
+            </a>
+            <a className="contact-row" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">
+              <span className="contact-icon">Gh</span> github.com/Sandip1230
+            </a>
+            <a className="contact-row" href="https://www.linkedin.com/in/sandip-maitra-20016137a/" target="_blank" rel="noreferrer">
+              <span className="contact-icon">in</span> LinkedIn
+            </a>
           </div>
-          <form className="form" onSubmit={submitContact}>
-            <input required placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-            <input required type="email" placeholder="Your email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-            <textarea required rows={5} placeholder="Message" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
-            <button className="btn-fill" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
-            {status === 'ok' && <div className="status-msg ok">✓ Message sent</div>}
-            {status === 'err' && <div className="status-msg err">✗ Something went wrong</div>}
-          </form>
+
+          <div className="form-side">
+            <form className="form" onSubmit={submitContact}>
+              <div className="field"><input required placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} /></div>
+              <div className="field"><input required type="email" placeholder="Your email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} /></div>
+              <div className="field"><textarea required rows={5} placeholder="Message" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} /></div>
+              <button className="btn-fill" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
+              {status === 'ok' && <div className="status-msg ok">✓ Message sent</div>}
+              {status === 'err' && <div className="status-msg err">✗ Something went wrong</div>}
+            </form>
+          </div>
         </div>
       </section>
 
