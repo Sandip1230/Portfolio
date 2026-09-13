@@ -1,0 +1,75 @@
+.admin-page{ min-height:100vh; background:linear-gradient(180deg,var(--bg),var(--bg2)); color:var(--text); }
+
+.admin-login{
+  min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+}
+.admin-login .blob{ position:absolute; width:400px; height:400px; border-radius:50%; filter:blur(100px); opacity:.3; }
+.admin-login .blob-a{ background:var(--cyan); top:-100px; left:-100px; }
+.admin-login .blob-b{ background:var(--violet); bottom:-100px; right:-100px; }
+.admin-login-card{
+  position:relative; z-index:1; background:var(--card); border:1px solid var(--border); border-radius:20px;
+  padding:44px; width:340px; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,.4);
+}
+.admin-login-card .lock{ font-size:32px; margin-bottom:14px; }
+.admin-login-card h2{ font-family:'Sora',sans-serif; margin-bottom:24px; }
+.admin-login-card input{
+  width:100%; padding:13px 16px; border-radius:10px; border:1px solid var(--border);
+  background:var(--bg2); color:var(--text); font-size:14.5px; margin-bottom:16px;
+}
+.admin-login-card input:focus{ outline:none; border-color:var(--cyan); }
+.admin-login-card button{
+  width:100%; padding:13px; border-radius:10px; border:none; background:linear-gradient(90deg,var(--cyan),var(--violet));
+  color:#04110a; font-weight:700; cursor:pointer; transition:.2s;
+}
+.admin-login-card button:hover{ transform:translateY(-2px); }
+.admin-login-card .err{ color:var(--error); margin-top:14px; font-size:13.5px; }
+
+.admin-top{
+  display:flex; justify-content:space-between; align-items:center; padding:28px 4vw;
+  border-bottom:1px solid var(--border); flex-wrap:wrap; gap:16px;
+}
+.admin-top h1{ font-family:'Sora',sans-serif; font-size:24px; }
+.admin-logout{ padding:9px 18px; border-radius:20px; border:1px solid var(--border); color:var(--dim); font-size:13px; font-weight:600; transition:.2s; background:transparent; cursor:pointer; }
+.admin-logout:hover{ border-color:var(--error); color:var(--error); }
+
+.admin-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; padding:28px 4vw; }
+.admin-stat{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 22px; }
+.admin-stat .num{ font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--cyan); }
+.admin-stat .label{ font-size:12.5px; color:var(--dim); margin-top:4px; }
+
+.admin-toolbar{ display:flex; gap:12px; padding:0 4vw 20px; flex-wrap:wrap; }
+.admin-toolbar input{
+  flex:1; min-width:220px; padding:12px 16px; border-radius:10px; border:1px solid var(--border);
+  background:var(--card); color:var(--text); font-size:14px;
+}
+.admin-toolbar input:focus{ outline:none; border-color:var(--cyan); }
+.admin-filter-btn{
+  padding:10px 18px; border-radius:10px; border:1px solid var(--border); background:transparent;
+  color:var(--dim); font-weight:600; font-size:13.5px; cursor:pointer; transition:.2s;
+}
+.admin-filter-btn.active{ background:var(--cyan); color:#04110a; border-color:var(--cyan); }
+
+.admin-list{ padding:0 4vw 60px; display:flex; flex-direction:column; gap:12px; }
+.admin-empty{ text-align:center; color:var(--dim); padding:60px 0; }
+
+.msg-card{
+  background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 24px;
+  cursor:pointer; transition:.2s; position:relative;
+}
+.msg-card:hover{ border-color:var(--cyan); }
+.msg-card.unread{ border-left:3px solid var(--cyan); }
+.msg-head{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.msg-who{ display:flex; align-items:center; gap:10px; }
+.msg-dot{ width:8px; height:8px; border-radius:50%; background:var(--cyan); flex-shrink:0; }
+.msg-name{ font-weight:700; }
+.msg-email{ color:var(--dim); font-size:13.5px; }
+.msg-date{ color:var(--dim); font-size:12.5px; white-space:nowrap; }
+.msg-preview{ color:var(--dim); font-size:14px; margin-top:8px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.msg-full{ color:var(--text); font-size:14.5px; margin-top:14px; line-height:1.6; white-space:pre-wrap; }
+.msg-actions{ display:flex; gap:10px; margin-top:16px; }
+.msg-actions button{
+  padding:8px 16px; border-radius:8px; border:1px solid var(--border); background:transparent;
+  color:var(--dim); font-size:12.5px; font-weight:600; cursor:pointer; transition:.2s;
+}
+.msg-actions .reply:hover{ border-color:var(--cyan); color:var(--cyan); }
+.msg-actions .del:hover{ border-color:var(--error); color:var(--error); }
