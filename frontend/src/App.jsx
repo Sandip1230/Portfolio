@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import Preloader from './components/Preloader';
+import Toast from './components/Toast';
+import BackToTop from './components/BackToTop';
 import Navbar from './components/Navbar';
 import ProjectModal from './components/ProjectModal';
 import Skills from './components/Skills';
@@ -49,6 +52,7 @@ export default function App() {
   const [modalProject, setModalProject] = useState(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState(null);
+  const [toast, setToast] = useState(null);
 
   const aboutR = useReveal();
   const skillsR = useReveal();
@@ -68,11 +72,17 @@ export default function App() {
       const res = await fetch(`${API_URL}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       if (!res.ok) throw new Error();
       setStatus('ok'); setForm({ name: '', email: '', message: '' });
-    } catch { setStatus('err'); }
+      setToast({ type: 'ok', message: 'Message sent — thanks for reaching out!' });
+    } catch {
+      setStatus('err');
+      setToast({ type: 'err', message: 'Something went wrong. Try again in a moment.' });
+    }
+    setTimeout(() => setToast(null), 4000);
   }
 
   return (
     <>
+      <Preloader />
       <ParticleField />
       <Navbar />
 
@@ -191,8 +201,6 @@ export default function App() {
               <div className="field"><input required type="email" placeholder="Your email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} /></div>
               <div className="field"><textarea required rows={5} placeholder="Message" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} /></div>
               <Magnetic strength={10}><button className="btn-fill" style={{ width: '100%' }} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button></Magnetic>
-              {status === 'ok' && <div className="status-msg ok">✓ Message sent</div>}
-              {status === 'err' && <div className="status-msg err">✗ Something went wrong</div>}
             </form>
           </div>
         </div>
@@ -201,6 +209,8 @@ export default function App() {
       <footer>© 2026 Sandip Maitra — built with the MERN stack.</footer>
 
       <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
+      <Toast toast={toast} onClose={() => setToast(null)} />
+      <BackToTop />
     </>
   );
 }
