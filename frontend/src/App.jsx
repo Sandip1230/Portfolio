@@ -2,9 +2,17 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ProjectModal from './components/ProjectModal';
 import Skills from './components/Skills';
+import ParticleField from './components/ParticleField';
+import Magnetic from './components/Magnetic';
+import Marquee from './components/Marquee';
+import Counter from './components/Counter';
+import TiltCard from './components/TiltCard';
+import TimelineItem from './components/TimelineItem';
 import { useReveal } from './hooks/useReveal';
 
 const API_URL = import.meta.env.VITE_API_URL;
+
+const MARQUEE_ITEMS = ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'Yjs', 'JavaScript', 'Vite', 'MySQL', 'Git', 'Arduino', 'REST APIs'];
 
 const FALLBACK_PROJECTS = [
   { slug: 'syncspace', title: 'SyncSpace', short: 'Real-time collaborative code editor + whiteboard workspace.', full: 'Developed a real-time collaborative code editor and whiteboard workspace using Socket.io and Yjs for state synchronization, with admin handoff logic and custom room approval interfaces.', stack: ['React', 'Socket.io', 'Yjs', 'Vite'], link: 'https://github.com/Sandip1230' },
@@ -65,6 +73,7 @@ export default function App() {
 
   return (
     <>
+      <ParticleField />
       <Navbar />
 
       <section className="hero" id="hero">
@@ -89,20 +98,20 @@ export default function App() {
           <p>B.Tech CSE student at JIS College of Engineering — I build collaborative apps, browser games, and satellite-data platforms with the MERN stack.</p>
 
           <div className="social-row">
-            <a className="social-icon" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">Git</a>
+            <a className="social-icon" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">Gh</a>
             <a className="social-icon" href="https://www.linkedin.com/in/sandip-maitra-20016137a/" target="_blank" rel="noreferrer">in</a>
             <a className="social-icon" href="mailto:maitrasandip99@gmail.com">✉</a>
           </div>
 
           <div className="hero-links">
-            <a href="#contact" className="btn btn-fill">Hire Me</a>
-            <a href="#work" className="btn btn-outline">See Work</a>
+            <Magnetic><a href="#contact" className="btn btn-fill">Hire Me</a></Magnetic>
+            <Magnetic><a href="#work" className="btn btn-outline">See Work</a></Magnetic>
           </div>
 
           <div className="stats-strip">
             {STATS.map(s => (
               <div className="stat" key={s.label}>
-                <div className="num">{s.num}</div>
+                <div className="num"><Counter value={s.num} /></div>
                 <div className="label">{s.label}</div>
               </div>
             ))}
@@ -110,8 +119,10 @@ export default function App() {
         </div>
       </section>
 
+      <Marquee items={MARQUEE_ITEMS} />
+
       <section className={`section about ${aboutR.revealClass}`} id="about" ref={aboutR.ref}>
-        <div className="eyebrow">About</div>
+        <div className="section-head"><span className="section-num">01</span><div className="eyebrow">About</div></div>
         <p>I'm a Computer Science and Engineering student who likes shipping things that feel alive — real-time collaboration, animated game combat systems, AI-fused data platforms. Comfortable across the stack, from Socket.io state sync to Arduino wiring.</p>
         <p>Based in Kolkata, India. Currently interning as an Engineering Intern at Axlero Solutions.</p>
         <div className="skill-row" style={{ marginTop: 20 }}>
@@ -120,27 +131,28 @@ export default function App() {
       </section>
 
       <section className={`section ${skillsR.revealClass}`} id="skills" ref={skillsR.ref}>
-        <div className="eyebrow">Skills</div>
+        <div className="section-head"><span className="section-num">02</span><div className="eyebrow">Skills</div></div>
         <h2 style={{ marginBottom: 6 }}>What I work with</h2>
         <Skills />
       </section>
 
       <section className={`section ${workR.revealClass}`} id="work" ref={workR.ref}>
-        <div className="eyebrow">Work</div>
+        <div className="section-head"><span className="section-num">03</span><div className="eyebrow">Work</div></div>
         <h2>Selected projects</h2>
         <div className="grid">
           {projects.map(p => (
-            <button className="card" key={p.slug} onClick={() => setModalProject(p)}>
+            <TiltCard key={p.slug} onClick={() => setModalProject(p)}>
+              <div className="card-preview">{p.title[0]}</div>
               <h3>{p.title}</h3>
               <p>{p.short}</p>
               <div>{p.stack.slice(0, 3).map(s => <span className="tag" key={s}>{s}</span>)}</div>
-            </button>
+            </TiltCard>
           ))}
         </div>
       </section>
 
       <section className={`section ${achR.revealClass}`} id="achievements" ref={achR.ref}>
-        <div className="eyebrow">Achievements</div>
+        <div className="section-head"><span className="section-num">04</span><div className="eyebrow">Achievements</div></div>
         <h2>Recognitions & milestones</h2>
         <div className="ach-grid">
           {ACHIEVEMENTS.map((a, i) => (
@@ -155,43 +167,30 @@ export default function App() {
       </section>
 
       <section className={`section ${expR.revealClass}`} id="experience" ref={expR.ref}>
-        <div className="eyebrow">Experience & Education</div>
+        <div className="section-head"><span className="section-num">05</span><div className="eyebrow">Experience & Education</div></div>
         <h2>Where I've been</h2>
-        <div className="timeline">
-          {EXPERIENCE.map((e, i) => (
-            <div className="tl-item" key={i}>
-              <div className="tl-date">{e.date}</div>
-              <div><h3>{e.title}</h3><p>{e.desc}</p></div>
-            </div>
-          ))}
+        <div className="timeline-v2">
+          {EXPERIENCE.map((e, i) => <TimelineItem key={i} date={e.date} title={e.title} desc={e.desc} />)}
         </div>
       </section>
 
       <section className={`section ${contactR.revealClass}`} id="contact" ref={contactR.ref}>
-        <div className="eyebrow">Contact</div>
+        <div className="section-head"><span className="section-num">06</span><div className="eyebrow">Contact</div></div>
         <h2>Let's build something</h2>
 
         <div className="contact-card">
           <div className="contact-info">
             <p>Open to internships, collabs, and interesting problems.</p>
-
-            <a className="contact-row" href="mailto:maitrasandip99@gmail.com">
-              <span className="contact-icon">✉</span> maitrasandip99@gmail.com
-            </a>
-            <a className="contact-row" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer">
-              <span className="contact-icon">Gh</span> github.com/Sandip1230
-            </a>
-            <a className="contact-row" href="https://www.linkedin.com/in/sandip-maitra-20016137a/" target="_blank" rel="noreferrer">
-              <span className="contact-icon">in</span> LinkedIn
-            </a>
+            <a className="contact-row" href="mailto:maitrasandip99@gmail.com"><span className="contact-icon">✉</span> maitrasandip99@gmail.com</a>
+            <a className="contact-row" href="https://github.com/Sandip1230" target="_blank" rel="noreferrer"><span className="contact-icon">Gh</span> github.com/Sandip1230</a>
+            <a className="contact-row" href="https://www.linkedin.com/in/sandip-maitra-20016137a/" target="_blank" rel="noreferrer"><span className="contact-icon">in</span> LinkedIn</a>
           </div>
-
           <div className="form-side">
             <form className="form" onSubmit={submitContact}>
               <div className="field"><input required placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} /></div>
               <div className="field"><input required type="email" placeholder="Your email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} /></div>
               <div className="field"><textarea required rows={5} placeholder="Message" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} /></div>
-              <button className="btn-fill" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
+              <Magnetic strength={10}><button className="btn-fill" style={{ width: '100%' }} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button></Magnetic>
               {status === 'ok' && <div className="status-msg ok">✓ Message sent</div>}
               {status === 'err' && <div className="status-msg err">✗ Something went wrong</div>}
             </form>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ThemeToggle from './ThemeToggle';
+import Magnetic from './Magnetic';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,7 +20,7 @@ export default function Navbar() {
           {links.map(l => <a key={l} href={`#${l}`}>{l[0].toUpperCase() + l.slice(1)}</a>)}
         </div>
         <ThemeToggle />
-        <a href="#contact" className="nav-cta">Let's Talk</a>
+        <Magnetic strength={14}><a href="#contact" className="nav-cta">Let's Talk</a></Magnetic>
       </div>
     </nav>
   );
